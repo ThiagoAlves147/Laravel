@@ -13,7 +13,7 @@
         <label>
             Senha:
             <br>
-            <input type="password" name="senha"/>
+            <input type="password" name="password"/>
         </label>
         <br>
         <input type="submit" value="Enviar"/>

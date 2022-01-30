@@ -19,17 +19,17 @@ class UserController extends Controller
     public function loginAction(Request $request){
         $request -> validate([
             'email' => ['required', 'email'],
-            'senha' => ['required']
+            'password' => ['required']
         ]);
 
-        $info = $request -> only('email', 'senha');
+        $info = $request -> only('email', 'password');
 
         if(Auth::attempt($info)){
-            $request -> session() -> regenerate();
-            return redirect() -> route('tarefas.index');
+            //$request -> session() -> regenerate();
+            //return redirect() -> route('tarefas.index');
 
             //return redirect()->intended('dashboard');
-            //return redirect()->intended('tarefas.index');
+            return redirect()->intended('tarefas.index');
         }
 
         return redirect()-> route('cadastro');
@@ -50,7 +50,7 @@ class UserController extends Controller
         $sql = User::create([
             'nome' => $request -> nome,
             'email' => $request -> email,
-            'senha' => Hash::make($request -> senha)
+            'password' => Hash::make($request -> senha)
         ]);
 
         Auth::login($sql);
